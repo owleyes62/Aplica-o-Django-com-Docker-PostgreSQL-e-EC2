@@ -1,7 +1,10 @@
 from django.shortcuts import get_object_or_404, redirect, render
+from rest_framework.decorators import permission_classes
+from rest_framework.permissions import IsAuthenticated
 
 from products.forms import ProductForm
 from products.models import Product
+from products.permissions import IsSuperUser
 
 
 def product_list(request):
@@ -25,6 +28,7 @@ def product_create(request):
     return render(request, 'product_form.html', {'form': form})
 
 
+@permission_classes([IsAuthenticated, IsSuperUser])
 def product_update(request, pk):
     product = get_object_or_404(Product, pk=pk)
     if request.method == 'POST':
@@ -37,6 +41,7 @@ def product_update(request, pk):
     return render(request, 'product_form.html', {'form': form})
 
 
+@permission_classes([IsAuthenticated, IsSuperUser])
 def product_delete(request, pk):
     product = get_object_or_404(Product, pk=pk)
     if request.method == 'POST':
