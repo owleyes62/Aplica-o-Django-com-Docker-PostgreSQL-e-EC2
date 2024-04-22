@@ -83,7 +83,7 @@ DATABASES = {
         'NAME': 'lista_produtos',
         'USER': 'postgres',
         'PASSWORD': config('DB_PASSWORD'),
-        'HOST': 'localhost',  # Ou o endereço IP do seu servidor PostgreSQL
+        'HOST': 'db',  # Ou o endereço IP do seu servidor PostgreSQL
         'PORT': '5432',        # A porta padrão do PostgreSQL
     }
 }
